@@ -1,0 +1,54 @@
+<div class="header">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg  justify-content-between py-3">
+      <a class="navbar-brand ms-5" href="#">
+        <img src="../../../assets/roomy_text_logo.png" alt="logo">
+      </a>
+
+      <button
+        class="toggle-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        (click)="toggleNavbar()">
+          <img *ngIf="!navbarOpen" src="assets/icon-menu.svg"  width="50" height="50" alt="menu-icon">
+          <img *ngIf="navbarOpen" src="assets/icon-close.svg"  width="50" height="50" alt="close-icon">
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngClass]="{ 'show': navbarOpen }">
+        <ul class="navbar-nav ms-auto mb-2 pe-4 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/home']">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/about']">About</a>
+          </li>
+          <!--<li class="nav-item">
+            <a class="nav-link" [routerLink]="['/blog']">Blog</a>
+          </li>-->
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/how-it-works']">How it works</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/contacts']">Contact us</a>
+          </li>
+        </ul>
+        <button class="header__button header__button_log ms-5"
+                [routerLink]="['/list-a-property']">List a Property
+        </button>
+       <!-- <button class="header__button header__button_log ms-5" [routerLink]="['/login']">
+          Login
+        </button>
+        <button class="header__button header__button_reg ms-3" [routerLink]="['/registration']">
+          Register
+        </button>-->
+      </div>
+    </nav>
+  </div>
+
+</div>
+
+

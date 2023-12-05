@@ -1,0 +1,454 @@
+<app-preloader *ngIf="isLoading"></app-preloader>
+<div class="page" *ngIf="!isLoading">
+  <div class="page__header">
+    <div class="container">
+      <div class="d-flex flex-sm-row gap-sm-0 gap-4 flex-column align-items-center">
+        <div class="col-lg-7 col-sm-6 col-12">
+          <p class="page__title">Earn money as a host in Dubai</p>
+          <p class="page__sub-title">
+            Become a host and invite guests to your property, we will do all job, <br>
+            you will get all profits
+          </p>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-lg-4 col-sm-6 col-12">
+          <form class="right form">
+            <h2 class="form__title">Find out how much you can get</h2>
+            <div class="radio">
+              <div class="toggle">
+                <div class="toggle__btn"
+                     [class.active]="propertyTypeTs === 'flat'"
+                     (click)="onChangePropertyType('flat')">Flat</div>
+                <div class="toggle__btn"
+                     [class.active]="propertyTypeTs === 'villa'"
+                     (click)="onChangePropertyType('villa')">Villa</div>
+              </div>
+            </div>
+            <select class="form-select input-lg mb-3"
+                    name="district"
+                    (change)="onDistrictChange($event)"
+            >
+              <option *ngFor="let district of districts; let i = index"
+                      [value]="district"
+                      [attr.selected]="i == 0 ? true : null"
+              >
+                {{district}}
+              </option>
+            </select>
+            <ng-container *ngIf="propertyTypeTs === 'flat'">
+              <select class="form-select input-lg mb-3"
+                      (change)="onChangeRoomsCount($event, 'flat')">
+                <option *ngFor="let item of updatedFlatRooms"
+                        [value]="item.count"
+                        [selected]="item.count === flatRoomsCount">{{item.text}}
+                </option>
+              </select>
+            </ng-container>
+            <ng-container *ngIf="propertyTypeTs === 'villa'">
+              <select class="form-select input-lg mb-3"
+                      (change)="onChangeRoomsCount($event, 'villa')">
+                <option *ngFor="let item of villaRooms"
+                        [value]="item.count"
+                        [selected]="item.count === generalRoomsCount">{{item.text}}
+                </option>
+              </select>
+            </ng-container>
+<!--
+            <div class="form__total">You can earn AED/MONTH<span>{{possiblePrice}}</span></div>
+-->
+            <button class="button" (click)="openModal(template)">Request projection for your property</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page__content content">
+    <div class="container">
+      <div class="row pb-5 align-items-center">
+        <div class="col-6">
+          <h3 class="content__header" style="margin-top: 0 !important;">
+            Property, Vacation Rental & AirBNB Management Services in Dubai for Roomy Owners
+          </h3>
+          <div class="content__text">
+            Roomy™ is a premium Vacation Rental Management Company based in Dubai.
+            Our organisation prides itself in our multi-channel marketing services, along with dedicated customer
+            service and maintenance, 7 days a week. As one of the first to be licensed
+            by the Dubai Department of Tourism and Commerce Marketing, we help you increase your return on
+            investment by converting your properties into Holiday Homes perfect for short-term leases in Dubai;
+            we also provide A-Z AirBnB Management Services. Along with our dynamic corporate culture,
+            our in-house revenue and property management software and our multifaceted teams,
+            we are proficient in catering to all your needs in Property Management.
+          </div>
+        </div>
+        <div class="col-6">
+          <img src="../../../assets/images/roomy1.png" alt="">
+        </div>
+      </div>
+
+      <div class="row pb-5">
+        <div class="col">
+          <h3 class="content__header">Why list with us</h3>
+          <div class="row content__cells">
+            <div class="cell col-12 col-md-3" data-aos="fade-up">
+              <img class="cell__img" src="assets/increase.png" alt="">
+              <h3 class="cell__title">Earn More</h3>
+              <div class="cell__text">
+                Our homeowners experience a surplus revenue rate of 21% or more, in just the first year.
+                Leave it to us, to build your online profile, set and determine ideal prices and efficiently
+                market your home in a competitive market
+              </div>
+            </div>
+
+            <div class="cell col-12 col-md-3" data-aos="fade-up">
+              <img class="cell__img" src="assets/home.png" alt="">
+              <h3 class="cell__title">Flexible Owner Stays</h3>
+              <div class="cell__text">
+                Earn from your property and stay-in, as you please. With flexible contracts,
+                you can now avoid overlapped guest stays and celebrate life’s milestones in your own home.
+              </div>
+            </div>
+
+            <div class="cell col-12 col-md-3" data-aos="fade-up">
+              <img class="cell__img" src="assets/care.png" alt="">
+              <h3 class="cell__title">Better Care</h3>
+              <div class="cell__text">
+                Our teams are built on dedication to support every single home we manage.
+                We provide, the highest standard of customer service, maintenance and cleanliness in any property of your choice.
+              </div>
+            </div>
+
+            <div class="cell col-12 col-md-3" data-aos="fade-up">
+              <img class="cell__img" src="assets/hassle.png" alt="">
+              <h3 class="cell__title">Hassle Free</h3>
+              <div class="cell__text">
+                We make it easy for guests from start to finish, from online booking to in-person check-in and check-out.
+                Our guest support team is just a phone call away.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container pb-5">
+      <h3 class="content__header">Our services</h3>
+      <div class="row content__cells">
+        <div class="cell col-12 col-md-4" data-aos="zoom-in-down">
+          <h3 class="cell__title">Listing & Marketing</h3>
+          <div class="cell__text">
+            Our team of industry experts will craft a fully optimized listing,
+            featuring all the essentials that make your property stand out.
+            With the listing fees fulfilled by us, you’ve got one less thing to worry about.
+          </div>
+        </div>
+
+        <div class="cell col-12 col-md-4" data-aos="zoom-in-down">
+          <h3 class="cell__title">Interior Design Services</h3>
+          <div class="cell__text">
+            Home staging has been reported to increase your booking rate by 12% and ultimately your rental income.
+            Work with our devoted designers today, and customize your interiors to yield higher returns.
+            Click here for more information.
+          </div>
+        </div>
+
+        <div class="cell col-12 col-md-4" data-aos="zoom-in-down">
+          <h3 class="cell__title">Professional Photography</h3>
+          <div class="cell__text">
+            Beauty is in beholder of the eye – or the camera. Professional photos are a key marketing tool;
+            your photos are the doorways to your potential guests.
+            From 360 virtual home tours that revamp your property’s appeal,
+            listing photos to video content – we’ve got it all.
+          </div>
+        </div>
+
+        <div class="cell col-12 col-md-4" data-aos="zoom-in-down">
+          <h3 class="cell__title">Initial Property Setup & Onboarding</h3>
+          <div class="cell__text">
+            After the initial property visit, we will provide you with a projection of the rental income you could
+            expect to make and list the items required to get your property into a DTCM-ready state.
+          </div>
+        </div>
+
+        <div class="cell col-12 col-md-4" data-aos="zoom-in-down">
+          <h3 class="cell__title">Housekeeping</h3>
+          <div class="cell__text">
+            Sit back and relax, while we cater to all your housekeeping needs with round the clock services.
+            Our housekeeping team is here to make sure you never break a sweat.
+          </div>
+        </div>
+
+        <div class="cell col-12 col-md-4" data-aos="zoom-in-down">
+          <h3 class="cell__title">Inquiries & Bookings</h3>
+          <div class="cell__text">
+            Complete satisfaction. 7 days a week. Enjoy a streamlined booking experience while our team
+            handles inquiries and confirms reservations for both, you and your guests.
+          </div>
+        </div>
+
+        <div class="cell col-12 col-md-4" data-aos="zoom-in-down">
+          <h3 class="cell__title">Dedicated Owner Services</h3>
+          <div class="cell__text">
+            If you have a question about your home, our team will reach out to you via phone or email.
+          </div>
+        </div>
+
+        <div class="cell col-12 col-md-4" data-aos="zoom-in-down">
+          <h3 class="cell__title">Property Maintenance</h3>
+          <div class="cell__text">
+            Routine maintenance is scheduled, and repairs are made by skilled technicians at a discounted rate.
+            We never include markups on invoices.
+          </div>
+        </div>
+
+        <div class="cell col-12 col-md-4" data-aos="zoom-in-down">
+          <h3 class="cell__title">Pricing Optimisation</h3>
+          <div class="cell__text">
+            We utilize the latest tools to track revenue and occupancy in order to optimize rates and maximize income.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container pb-5">
+      <h3 class="content__header">Travelers from</h3>
+      <div class="counter">
+        <div class="counter__guests">
+          <div [countUp]="850" [options]="{ enableScrollSpy: true,  duration: 3, suffix: '+'}">0</div>
+          <p>Happy Guests</p>
+        </div>
+        <div class="counter__countries">
+          <div [countUp]="45" [options]="{ enableScrollSpy: true,  duration: 3, suffix: '+'}">0</div>
+          <p>Countries</p>
+        </div>
+        <div class="counter__reviews">
+          <div [countUp]="4.89" [options]="{ enableScrollSpy: true,  duration: 3,  decimalPlaces: 2, suffix: '⭑'}">0</div>
+          <p>Average Travelers Reviews</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container pb-5 d-flex justify-content-center">
+      <div class="col-12 col-md-8 form-wrapper" >
+        <form class="form">
+          <h2 class="form__title">Get started with us today!</h2>
+          <div class="radio">
+            <div class="toggle">
+              <div class="toggle__btn"
+                   [class.active]="propertyTypeTs === 'flat'"
+                   (click)="onChangePropertyType('flat')">Flat</div>
+              <div class="toggle__btn"
+                   [class.active]="propertyTypeTs === 'villa'"
+                   (click)="onChangePropertyType('villa')">Villa</div>
+            </div>
+          </div>
+          <select class="form-select input-lg mb-3"
+                  name="district"
+                  (change)="onDistrictChange($event)"
+          >
+            <option *ngFor="let district of districts; let i = index"
+                    [value]="district"
+                    [attr.selected]="i == 0 ? true : null"
+            >
+              {{district}}
+            </option>
+          </select>
+          <ng-container *ngIf="propertyTypeTs === 'flat'">
+            <select class="form-select input-lg mb-3"
+                    (change)="onChangeRoomsCount($event, 'flat')">
+              <option *ngFor="let item of updatedFlatRooms"
+                      [value]="item.count"
+                      [selected]="item.count === flatRoomsCount">{{item.text}}
+              </option>
+            </select>
+          </ng-container>
+          <ng-container *ngIf="propertyTypeTs === 'villa'">
+            <select class="form-select input-lg mb-3"
+                    (change)="onChangeRoomsCount($event, 'villa')">
+              <option *ngFor="let item of villaRooms"
+                      [value]="item.count"
+                      [selected]="item.count === generalRoomsCount">{{item.text}}
+              </option>
+            </select>
+          </ng-container>
+          <!--
+                      <div class="form__total">You can earn AED/MONTH<span>{{possiblePrice}}</span></div>
+          -->
+          <button class="button" (click)="openModal(template)">Request projection for your property</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="container pb-5">
+      <h3 class="content__header">Frequently Asked Questions</h3>
+
+      <accordion [isAnimated]="true">
+        <accordion-group heading="What are the requirements for renting your property?" (click)="slideMove($event)">
+          <p>We do require that all our properties shall be furnished in accordance with DTCM (Department of Tourism and Commerce Marketing) furnishing requirements and be available for at least 90 calendar days per year.</p>
+          <p>Our team can help you to furnish your holiday homes or arrange the missing items in order to match the standards, simply contact info@roomy.ae or call us at <a href="tel: +971563490731">+ 971 56 349 0731</a> for a free consultation.</p>
+        </accordion-group>
+
+        <accordion-group heading="How do I list my property?" (click)="slideMove($event)">
+          <p>If you would like to become one of our homeowners, we can arrange an initial phone consultation with our team, which is followed by a visit to your home and a bespoke proposal/quotation.</p>
+          <p>Once the terms are agreed to and an agreement is signed, we can schedule a professional photo shoot and blueprint of your home.</p>
+          <p>Our registered holiday homes are typically ready to be marketed within a few days, and we can then start welcoming guests for your available dates.</p>
+        </accordion-group>
+
+        <accordion-group heading="How much can I earn from my holiday home?" (click)="slideMove($event)">
+          <p>How much you can earn is dependent on your home’s location, quality and availability. If you would like to find out more, please get in touch and our team will happily organise a personalised forecast for you.</p>
+          <p>For a rough idea of what your home could be worth, why not try our holiday homes rental income calculator.</p>
+        </accordion-group>
+
+        <accordion-group heading="How can I be assured that my property is safe and secure?" (click)="slideMove($event)">
+          <p>Our team can talk you through all the ways in which we keep your home safe and secure. From strict guest vetting to insurance and safety requirements for your home.</p>
+          <p>Every home should be equipped with a fire extinguisher, first aid kit and other safety equipment, be in accordance to DTCM furnishing list for holiday homes and a third party (public liability) insurance will be obtained prior to renting your property.</p>
+        </accordion-group>
+
+        <accordion-group heading="What happens if something is damaged during a guest stay?" (click)="slideMove($event)">
+          <p>Roomy™, we take care of your property as if it was our own, and that is why we have a number of processes in place to avoid any issues arising from guest vetting, collection of security deposits and insurance to physical and photo inventories as well as personal check-ins and check-outs for each guest.</p>
+        </accordion-group>
+
+        <accordion-group heading="What happens if there is an electric, plumbing or maintenance issue?" (click)="slideMove($event)">
+          <p>We recommend all landlords to hold an annual maintenance contract (AMC) with a trusted home repair company. This policy helps you year-round and ensures that there aren’t any unexpected costs while you are away.</p>
+          <p>If a guest reports an issue, we work to ensure both for the homeowner and guest that it is resolved as soon as possible, so that you can come home to everything working perfectly. However, we are able to resolve 90% of the issues that may arise without ever contacting you during your travels.</p>
+          <p>For anything more important or anything that requires more specialist knowledge about your home, we will contact you to ensure we are able to find the right solution for you.</p>
+        </accordion-group>
+
+        <accordion-group heading="How do you find guests for my holiday home?" (click)="slideMove($event)">
+          <p>We work with respected local and global accommodation and advertising websites, as well as corporate booking platforms that allow for travellers across the world to book a stay in your home. In addition, we take bookings from our own website and accept repeat bookings.</p>
+        </accordion-group>
+
+        <accordion-group heading="How Much Will I Have To Pay For Your Service?" (click)="slideMove($event)">
+          <p>There are no listing fees or costs that need to be paid beforehand. Roomy Holiday Homes charges competitive rate which includes A to Z services on the bookings that we make for you, depending on the length of your contract and other factors. Get in touch with us today to get more details.</p>
+          <p>We also offer a full service property management program for long-term rentals.</p>
+          <p>If you would like to receive additional info and a quote for our management services, please contact us at <a href="tel: +971563490731">+ 971 56 349 0731</a>.</p>
+        </accordion-group>
+
+        <accordion-group heading="What Will The Rental Price That I Charge For My Property Be?" (click)="slideMove($event)">
+          <p>Every property is unique. Factors like facilities, location as well as how your holiday home is furnished will influence the rental price.</p>
+          <p>Please contact Roomy Holiday Homes if you require an estimate. One of our market experts will be more than happy to assist you.</p>
+        </accordion-group>
+
+        <accordion-group heading="What are my (as Property Owner) responsibilities?" (click)="slideMove($event)">
+          <p>All property owners shall ensure to:</p>
+          <ul style="list-style: decimal">
+            <li>Furnish their properties in accordance to DTCM standards, property in good order and all appliances operational.</li>
+            <li>Pay service charges on time to allow guests’ uninterruptible access to the property and its facilities, such as to the pool and gym.</li>
+            <li>Pay utility charges on time to avoid any inconvenience for the guests.</li>
+            <li>Respond to our team to find best solution in case of maintenance or other issues.</li>
+          </ul>
+        </accordion-group>
+
+        <accordion-group heading="What Are The Responsibilities Of Roomy™?" (click)="slideMove($event)">
+          <p>We will:</p>
+          <ul style="list-style: disc">
+            <li>market and advertise your property to suitable adults who are older than 21 as well as families and executives (corporate rentals).</li>
+            <li>screen the guests beforehand via a phone call to make sure that they are part of the target group.</li>
+            <li>develop and maintain a website for every individual property that includes photos, descriptions, info regarding the pricing and availability.</li>
+            <li>visit your place to take professional, high-quality photos.</li>
+            <li>take care of the bookings by applying the rental prices that appear in the contract and offer any specials approved by the owner.</li>
+            <li>take care of the communication pertaining to the booking and all client relations.</li>
+            <li>collect the money as well as taxes that are required by the Dubai government and submit it to the DTCM.</li>
+            <li>validate and gather all the documentation required and send these to the DTCM.</li>
+            <li>collect the security deposit before any guest checks in and after the property has been inspected for damage, we will ensure that the deposit is returned to the guests when they check out.</li>
+            <li>be there in person when the guests check in or check out.</li>
+            <li>be available to answer any questions and take care of any issues during the guests’ stay.</li>
+            <li>ensure the property owner receives the payment as per the time period stipulated in the contract.</li>
+            <li>We will supply a schedule of supplies and you will be responsible to ensure that your place has all the items, linen and towels listed in this schedule.</li>
+          </ul>
+        </accordion-group>
+
+        <accordion-group heading="How will I know when my property is rented and when it's vacant?" (click)="slideMove($event)">
+          <p>We have one of the most comphrehensive Landlord’s Portal in the market, allowing our landlords to log-in online and check all their bookings (previous, current and future), financial transactions and statistics, as well as see their payouts history, utility payments history, calendar, personalized dashboard or book an owner stay directly. The portal is updated on daily basis thus keeping everything up-to-date</p>
+        </accordion-group>
+      </accordion>
+    </div>
+  </div>
+</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <div>
+      <p class="modal__title">List your property</p>
+      <p class="modal__sub-title">Fill out the form and our manager will contact you shortly</p>
+    </div>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <form class="modal-body">
+    <div class="modal__form">
+      <div class="modal__form-input">
+        <label>
+          Name
+          <input type="text" class="form-control" placeholder="Your name..." required #name>
+        </label>
+      </div>
+      <div class="modal__form-input">
+        <label>
+          Contact number
+          <input type="number" class="form-control" placeholder="Your phone..." required #phone>
+        </label>
+      </div>
+      <div class="modal__form-input">
+        <label>
+          Email
+          <input type="email" class="form-control" placeholder="Your email..." #email>
+        </label>
+      </div>
+      <div class="modal__form-input">
+        <label>
+          Property Type
+          <select class="form-select form-control input-lg mb-3" #propertyType>
+            <option value="Apartment" [selected]="propertyTypeTs === 'apartment'">Apartment</option>
+            <option value="Villa" [selected]="propertyTypeTs === 'villa'">Villa</option>
+          </select>
+        </label>
+      </div>
+      <div class="modal__form-input">
+        <label>
+          District
+          <select class="form-select form-control input-lg mb-3" #district>
+            <option *ngFor="let dist of districts" [value]="dist" [selected]="dist === selectedDistrict">{{dist}}</option>
+          </select>
+        </label>
+      </div>
+      <div class="modal__form-input">
+        <label>
+          Bedroom
+          <select class="form-select form-control input-lg mb-3" #rooms>
+            <option value="Studio">Studio</option>
+            <option value="1 bedroom" [selected]="generalRoomsCount === 1">1 bedroom</option>
+            <option value="2 bedrooms" [selected]="generalRoomsCount === 2">2 bedrooms</option>
+            <option value="3 bedrooms" [selected]="generalRoomsCount === 3">3 bedrooms</option>
+            <option value="4 bedrooms" [selected]="generalRoomsCount === 4">4 bedrooms</option>
+            <option value="5 bedrooms" [selected]="generalRoomsCount === 5">5 bedrooms</option>
+            <option value="6 bedrooms" [selected]="generalRoomsCount === 6">6 bedrooms</option>
+            <option value="7+ bedrooms" [selected]="generalRoomsCount === 7">7+ bedrooms</option>
+          </select>
+        </label>
+      </div>
+      <div class="modal__form-input">
+        <label>
+          Please describe your property
+          <textarea #details
+                    class="form-control"
+                    cols="30"
+                    rows="3"
+                    placeholder="Tell us about location, a building name and all details what you could explain">
+          </textarea>
+        </label>
+      </div>
+    </div>
+    <button class="button"
+            type="submit"
+            [disabled]="name.value.length < 3 || phone.value.length < 3"
+            (click)="onSend(template, name.value, phone.value, email.value, propertyType.value, district.value, rooms.value, details.value)">
+      Request to List Property
+    </button>
+  </form>
+</ng-template>
+
+<alert type="success" *ngIf="isSuccess">
+  <strong>Well done!</strong> You successfully read this important alert message.
+</alert>

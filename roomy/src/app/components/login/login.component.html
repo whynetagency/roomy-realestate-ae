@@ -1,0 +1,59 @@
+<div class="login">
+  <div class="login__card card">
+    <h2 class="card__header mb-3">
+      Login
+    </h2>
+    <div class="card__email mb-3">
+      <label for="email" class="mb-1">
+        Email Address
+      </label>
+      <input
+        #userEmail
+        class="form-control"
+        type="email"
+        id="email"
+        pattern=".+@globex\.com"
+        size="30"
+        required
+      >
+    </div>
+    <div class="card__pass mb-3">
+      <label for="password" class="mb-1">
+        Password
+      </label>
+      <input
+        #userPassword
+        class="form-control"
+        type="password"
+        id="password"
+        required
+      >
+    </div>
+    <div class="card__tools mb-3">
+      <div class="form-check">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="rememberCheck"
+
+        >
+        <label class="form-check-label" for="rememberCheck">
+          Remember me
+        </label>
+      </div>
+      <a href="#">Forgot password?</a>
+    </div>
+    <button
+      class="card__register button mb-3"
+      [routerLink]="['/registration']"
+    >
+      Register
+    </button>
+    <button
+      class="card__login button mb-3"
+      (click)="authService.signIn(userEmail.value, userPassword.value)"
+    >
+      Login
+    </button>
+  </div>
+</div>

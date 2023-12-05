@@ -1,0 +1,71 @@
+@import "src/assets/variables";
+.card {
+  margin: 2rem 1rem 1rem;
+  border: none;
+  background: #fffbf2;
+  border-radius: 30px;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
+  &:hover {
+    cursor: pointer;
+    .card{
+      &__nav-btn{
+        display: block;
+      }
+    }
+  }
+  &:hover > &__photo {
+    transform: translateY(-10px);
+    box-shadow: 0 0 12px 0 rgb(212 212 225 / 24%), 0 16px 34px 0 rgb(228 228 236 / 20%);
+  }
+  &__description {
+    padding: 20px !important;
+  }
+  &__photo {
+    position: relative;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 30px;
+    transition-duration: 0.3s;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    img{
+      width: 100% !important;
+    }
+  }
+  &__title {
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-bottom: 10px;
+  }
+  &__district, &__price {
+    font-size: 13px;
+    color: $secondary-text-color;
+    padding-bottom: 10px;
+    strong {
+      color: initial;
+    }
+  }
+  &__tax {
+    font-size: 10px;
+    opacity: 0.4;
+    line-height: 1.4;
+  }
+  &__nav-btn{
+    display: none;
+    position: absolute;
+    top: calc(50% - 20px);
+    height: 40px;
+    width: 40px;
+    background: rgba(0, 0, 0, .2);
+    &_prev{
+      left: 0;
+    }
+    &_next{
+      right: 0;
+    }
+  }
+}

@@ -1,0 +1,77 @@
+<div class="page admin">
+  <div class="page__header admin__header">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-6">
+          <p class="page__title admin__title" [innerHTML]="'ADMIN.TITLE'"></p>
+          <p class="page__sub-title admin__sub-title" [innerHTML]="'ADMIN.SUB_TITLE'"></p>
+        </div>
+        <div class="col-6"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-8 justify-content-around"><!--todo: active section title--></div>
+        <div class="col text-right">
+          <div class="btn-group">
+            <button class="admin__btn"
+                    *ngFor="let item of navigation"
+                    [ngClass]="{'active': activeView === item.view}"
+                    (click)="onChangeView(item.view)"
+                    [disabled]="activeView === item.view">{{item.title}}</button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col" style="position: relative">
+          <div class="view-wrapper">
+            <ng-container *ngIf="activeView === 'users'">
+              <table class="table" *ngIf="users && users.length > 0">
+                <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">ID</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let user of users">
+                  <td>{{user.email}}</td>
+                  <td>{{user.uid}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </ng-container>
+            <div *ngIf="activeView === 'exams'" class="text-center">
+              <p class="page-description">
+                Вы можете загрузить новый экзамен нажав на кнопку <strong>Выбрать файл</strong>. <br>
+                Файл должен быть в <strong>JSON</strong> формате и должен иметь такую же структуру как описана в файле <strong>ReadMe</strong>.
+              </p>
+              <input style="display: none"
+                     type="file" (change)="onFileChanged($event)"
+                     #fileInput>
+
+              <div *ngIf="result" class="json-viewer">
+                <ngx-json-viewer [json]="result" [expanded]="false"></ngx-json-viewer>
+              </div>
+
+              <button class="btn btn_select" *ngIf="!result"
+                      (click)="fileInput.click()">Выбрать файл
+              </button>
+              <ng-container *ngIf="result">
+                <button class="btn btn_remove" (click)="onRemoveFile()">Удалить Файл</button>
+                <button class="btn btn_upload" (click)="onUpload('products')">Загрузить продукт в FireBase</button>
+                <button class="btn btn_upload" (click)="onUpload('tests')">Загрузить тест в FireBase</button>
+                <button class="btn btn_upload" (click)="onUpload('exams')">Загрузить экзамен в FireBase</button>
+              </ng-container>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

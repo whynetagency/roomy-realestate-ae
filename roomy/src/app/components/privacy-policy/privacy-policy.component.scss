@@ -1,0 +1,35 @@
+.page{
+  background: #fffbf2;
+  &__header{
+    background: url('../../../assets/images/privacy.jpg') no-repeat center;
+    &:before{
+      background: rgb(0 0 0 / 50%);
+    }
+  }
+  &__sub-title{
+    margin-bottom: 10px;
+  }
+  &__content{
+    padding: 50px 15px;
+    h1{
+      font-size: 2.5rem;
+      font-weight: 800;
+      padding: 0;
+      margin: 20px 0;
+    }
+    h2{
+      font-size: 1.3rem;
+      padding: 0;
+      margin: 50px 0 15px;
+      font-weight: 600;
+      color: #ff9873;
+      text-transform: uppercase;
+    }
+    p, li{
+      font-size: 1.1rem;
+      line-height: 1.4;
+      margin-bottom: 10px;
+      opacity: .6;
+    }
+  }
+}

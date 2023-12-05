@@ -1,0 +1,75 @@
+.admin{
+  &__header{
+    //background: url() no-repeat center;
+    background-size: cover;
+    position: relative;
+    padding: 0;
+    & > * {
+      position: relative;
+      z-index: 2;
+    }
+    &:before{
+      content: '';
+      background: rgba(19, 18, 49, .5);
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+    .row{
+      height: 40vh;
+    }
+  }
+  &__section-title{
+    margin-bottom: 45px;
+  }
+  &__sub-title{
+    margin: 0;
+  }
+  .btn-group {
+    background: #131231;
+    border-radius: 50px;
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+    padding: 5px;
+  }
+  .admin__btn {
+    background: transparent;
+    border: none;
+    padding: 5px 10px;
+    color: #fff;
+    border-radius: 20px;
+    margin: 0;
+    &.active{
+      background: #b18d34;
+    }
+  }
+  .section{
+    padding: 50px 0;
+  }
+}
+.table{
+  background: white;
+  border-radius: 5px !important;
+  overflow: hidden;
+}
+.json-viewer{
+  background: rgba(255, 255, 255, 1);
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  text-align: left;
+}
+.btn_select {
+  display: inline-block;
+  vertical-align: middle;
+  background: #131231;
+  color: #fff;
+  border: solid 1px;
+  padding: 5px 25px;
+  border-radius: 22px;
+  font-size: 16px;
+  text-transform: uppercase;
+}

@@ -1,0 +1,35 @@
+.page{
+  &__header{
+    background: url('../../../assets/images/faq.png') no-repeat center;
+  }
+  &__content{
+    padding: 50px 15px;
+    h1{
+      font-size: 2.5rem;
+      font-weight: 800;
+      padding: 0;
+      margin: 20px 0;
+    }
+    h3{
+      font-size: 1.3rem;
+      padding: 0;
+      margin: 50px 0 15px;
+      font-weight: 600;
+      color: #ff9873;
+      text-transform: uppercase;
+    }
+    a{
+      color: #ff9873;
+      opacity: .8;
+      &:hover{
+        opacity: 1;
+      }
+    }
+    p, li{
+      font-size: 1.1rem;
+      line-height: 1.4;
+      margin-bottom: 10px;
+      opacity: .6;
+    }
+  }
+}

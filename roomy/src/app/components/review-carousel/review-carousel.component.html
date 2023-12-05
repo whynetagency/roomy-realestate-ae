@@ -1,0 +1,12 @@
+<div class="carousel">
+  <ngx-slick-carousel #slickModal="slick-carousel"
+                      [config]="slideConfigReview"
+  >
+    <div *ngFor="let review of reviews" ngxSlickItem class="slide">
+      <app-review-card [reviewItem] = review></app-review-card>
+    </div>
+  </ngx-slick-carousel>
+  <button class="button button__next" (click)="next()"></button>
+  <button class="button button__prev" (click)="prev()"></button>
+</div>
+

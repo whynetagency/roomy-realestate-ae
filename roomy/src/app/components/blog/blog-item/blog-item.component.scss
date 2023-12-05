@@ -1,0 +1,130 @@
+.news{
+  background: #fffbf2;
+  .main-section{
+    background-image: url("../../../../assets/images/home-1.jpg");
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    position: relative;
+    padding: 150px 0 100px;
+    z-index: 1;
+    &:before{
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    & > * {
+      position: relative;
+      z-index: 2;
+    }
+    &__title{
+      font-size: 62px;
+      line-height: 1;
+      color: #fff;
+      font-weight: bold;
+    }
+    &__text{
+      color: #6e6f73;
+      font-size: 16px;
+    }
+    &__sub-title{
+      color: #fff;
+      line-height: 24px;
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+  }
+  &-item{
+    margin-bottom: 30px;
+    &:hover{
+      cursor: pointer;
+      .news-item__title{
+        color: #b18d34;
+      }
+    }
+    &__inner{
+      &:hover{
+        cursor: pointer;
+        .news-item__title{
+          color: #b18d34;
+        }
+      }
+    }
+    &__img{
+      height: 150px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    &__title{
+      font-size: 18px;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #0c0c29;
+      margin: 20px 0 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    &__description{
+      color: #5f6e94;
+      font-size: 16px;
+      padding: 0;
+      margin: 0;
+      line-height: 1;
+    }
+  }
+  &__img{
+    max-width: 100%;
+  }
+  &__wrapper{
+    padding: 56px 0 0;
+    h1{
+      font-size: 2.5rem;
+      font-weight: 800;
+      padding: 0;
+      margin: 20px 0;
+    }
+    h3{
+      font-size: 1.3rem;
+      padding: 0;
+      margin: 50px 0 15px;
+      font-weight: 600;
+      color: #ff9873;
+      text-transform: uppercase;
+    }
+    p, li{
+      font-size: 1.1rem;
+      line-height: 1.4;
+      margin-bottom: 10px;
+      opacity: .6;
+    }
+  }
+  &__sub-title{
+    font-size: 32px;
+    line-height: 1;
+    color: #0c0c29;
+    margin: 30px 0;
+  }
+  &__recommended{
+    background: rgba(0, 0, 0, .05) !important;
+    z-index: 4;
+    position: relative;
+    margin-top: 40px;
+  }
+
+}
+@media (max-width: 768px) {
+  .news{
+    .main-section__title {
+      font-size: 42px;
+    }
+    &__wrapper{
+      padding: 30px 0;
+    }
+  }
+}

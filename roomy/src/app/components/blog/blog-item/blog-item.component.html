@@ -1,0 +1,44 @@
+<app-preloader *ngIf="isLoading"></app-preloader>
+<div *ngIf="activeItem && !isLoading">
+  <div class="news">
+    <div class="main-section"
+         [style.background-image]="'url(../../../assets/images/posts/' + activeItem['id'] + '.jpg)'"
+    >
+      <div class="container">
+        <div class="row align-items-center main-section__wrapper">
+          <div class="col-xs-12 col-sm-12">
+            <p class="main-section__title">{{activeItem['title']}}</p>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="news__wrapper section">
+    <div class="container">
+      <div class="row">
+        <div class="news__text col" [innerHTML]="activeItem['text']"></div>
+      </div>
+    </div>
+    <div class="news__recommended">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <p class="news__sub-title">You may also be interested in:</p>
+          </div>
+        </div>
+        <div class="row" *ngIf="posts && posts.length > 0">
+          <ng-container *ngFor="let item of posts; index as i">
+            <div class="news-item col-xs-12 col-sm-6 col-md-3 col-lg-3" *ngIf="item.id !== activeItemId && i <= 4">
+              <div class="news-item__inner" [routerLink]="['/blog', item.id]">
+                <div class="news-item__img" [style.background-image]="'url(' + (item.img ? item.img : '../../../assets/images/posts/' + item.id + '.jpg') + ')'"></div>
+                <p class="news-item__title" [title]="item.title">{{item.title}}</p>
+                <p class="news-item__description" [innerHTML]="item.text.substring(0, 65) + '...'"></p>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

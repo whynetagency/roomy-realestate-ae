@@ -1,0 +1,35 @@
+<app-preloader *ngIf="isLoading"></app-preloader>
+<div class="page" *ngIf="!isLoading">
+  <div class="page__header">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col">
+          <p class="page__title">Roomy News</p>
+          <p class="page__sub-title">Here you can find all the latest news in the real estate industry and Roomy</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page__content blogs__wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p class="page-t">Latest news from Roomy</p>
+        </div>
+      </div>
+      <div class="row" *ngIf="isBlog">
+        <div class="blogs-item col-xs-12 col-sm-6 col-md-4 col-lg-4"
+             *ngFor="let item of posts; let i = index">
+          <div class="blogs-item__inner" [routerLink]="['/blog', item.id]">
+            <div
+              class="blogs-item__img"
+              [style.background-image]="'url(' + ('../../../assets/images/posts/' + item.id + '.jpg') + ')'">
+            </div>
+            <p class="blogs-item__title" [title]="item.title">{{item.title}}</p>
+            <p class="blogs-item__description" [innerHTML]="item.text.substring(0, 75) + '...'"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

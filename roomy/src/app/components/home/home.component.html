@@ -1,0 +1,95 @@
+<app-preloader *ngIf="isLoading"></app-preloader>
+<div class="home">
+  <section class="searchbar">
+    <div class="video-wrapper">
+      <video playsinline autoplay muted loop>
+        <source src="./assets/videos/head-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="search">
+      <form [formGroup]="myForm" method="post" class="bar ps-4">
+          <div class="d-flex justify-content-center district-wrapper">
+            <svg class="location-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M168.3 499.2C116.1 435 0 279.4 0 192C0 85.96 85.96 0 192 0C298 0 384 85.96 384 192C384 279.4 267 435 215.7 499.2C203.4 514.5 180.6 514.5 168.3 499.2H168.3zM192 256C227.3 256 256 227.3 256 192C256 156.7 227.3 128 192 128C156.7 128 128 156.7 128 192C128 227.3 156.7 256 192 256z" fill="#757575"></path></svg>
+            <select class="district" formControlName="district" name="district">
+              <option *ngFor="let district of districts; let i = index"
+                      [attr.value]="district"
+                      [attr.selected]="i == 0 ? true : null"
+              >
+                {{district}}
+              </option>
+            </select>
+          </div>
+          <div class="divider"></div>
+          <div class="datepicker">
+            <div class="datepicker-action" (click)="dp.show()"></div>
+            <input class="hidden mb-3"
+                   #dp="bsDaterangepicker"
+                   style="position: absolute"
+                   bsDaterangepicker
+                   formControlName="dates"
+                   [placement]="'bottom'"
+                   [minDate]=minDate
+                   [bsConfig]="{
+               isAnimated: true,
+               containerClass: 'theme-orange',
+               rangeInputFormat : 'YYYY-MM-DD'
+              }"
+            >
+            <div class="field">
+              <svg style="color: rgb(117, 117, 117); width: 16px; height: 16px" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"><path d="M12,19a1,1,0,1,0-1-1A1,1,0,0,0,12,19Zm5,0a1,1,0,1,0-1-1A1,1,0,0,0,17,19Zm0-4a1,1,0,1,0-1-1A1,1,0,0,0,17,15Zm-5,0a1,1,0,1,0-1-1A1,1,0,0,0,12,15ZM19,3H18V2a1,1,0,0,0-2,0V3H8V2A1,1,0,0,0,6,2V3H5A3,3,0,0,0,2,6V20a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V6A3,3,0,0,0,19,3Zm1,17a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V11H20ZM20,9H4V6A1,1,0,0,1,5,5H6V6A1,1,0,0,0,8,6V5h8V6a1,1,0,0,0,2,0V5h1a1,1,0,0,1,1,1ZM7,15a1,1,0,1,0-1-1A1,1,0,0,0,7,15Zm0,4a1,1,0,1,0-1-1A1,1,0,0,0,7,19Z" fill="#757575"></path></svg>
+              {{myForm.value?.dates[0] ? (myForm.value?.dates[0] | dateFormat) : 'Check-In' }}
+            </div>
+            <div class="divider" style="margin: 0 1rem"></div>
+            <div class="field">
+              <svg style="color: rgb(117, 117, 117); width: 16px; height: 16px" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"><path d="M12,19a1,1,0,1,0-1-1A1,1,0,0,0,12,19Zm5,0a1,1,0,1,0-1-1A1,1,0,0,0,17,19Zm0-4a1,1,0,1,0-1-1A1,1,0,0,0,17,15Zm-5,0a1,1,0,1,0-1-1A1,1,0,0,0,12,15ZM19,3H18V2a1,1,0,0,0-2,0V3H8V2A1,1,0,0,0,6,2V3H5A3,3,0,0,0,2,6V20a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V6A3,3,0,0,0,19,3Zm1,17a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V11H20ZM20,9H4V6A1,1,0,0,1,5,5H6V6A1,1,0,0,0,8,6V5h8V6a1,1,0,0,0,2,0V5h1a1,1,0,0,1,1,1ZM7,15a1,1,0,1,0-1-1A1,1,0,0,0,7,15Zm0,4a1,1,0,1,0-1-1A1,1,0,0,0,7,19Z" fill="#757575"></path></svg>
+              {{myForm.value?.dates[1] ? (myForm.value?.dates[1] | dateFormat) : 'Check-Out' }}
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="guests justify-content-sm-center">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+                <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+              </svg>
+            </span>
+            <span>Guests</span>
+            <button (click)="decrement()">-</button>
+            <input
+              required
+              type="number"
+              formControlName="guests"
+            >
+            <button (click)="increment()">+</button>
+          </div>
+        <button (click)="search()"
+                [disabled]="!myForm.controls['dates'].value.length"
+                type="submit" class="btn btn-warning">
+          Search
+        </button>
+      </form>
+    </div>
+</section>
+  <!--<div class="hero">
+  </div>-->
+
+  <section class="section">
+    <div class="apartments py-5 container" *ngIf="rooms && rooms.length > 0">
+      <app-product-card [products] = rooms
+                        class="d-flex flex-row justify-content-start row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 flex-wrap"
+      ></app-product-card>
+    </div>
+    <div class="no-results py-5 container" *ngIf="!rooms || rooms.length < 1">
+      <img src="../../../assets/images/no-results.svg" alt="" class="no-results__img">
+      <p class="no-results__title">Sorry! No results found :(</p>
+      <p class="no-results__text">
+        We're sorry what you are looking for. <br>Please change your search query or try later...
+      </p>
+    </div>
+
+    <div class="review pb-5 container" *ngIf="reviews && reviews.length > 0">
+      <h1 class="section__header">Review of our guests</h1>
+      <app-review-carousel [reviews]=reviews></app-review-carousel>
+    </div>
+  </section>
+</div>

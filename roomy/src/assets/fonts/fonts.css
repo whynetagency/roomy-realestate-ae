@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'Fivo-sans';
+  src: local("Fivo-sans"), url('src/assets/fonts/Fivo-sans.ttf') format("truetype");
+}
+
+@font-face {
+  font-family: 'Museo';
+  src: local("Museo"), url('src/assets/fonts/Museo.ttf') format("truetype");
+}

@@ -1,0 +1,53 @@
+<div class="registration">
+  <div class="registration__card card">
+    <h2 class="card__header mb-3">
+      Register
+    </h2>
+    <div class="card__email mb-3">
+      <label for="email" class="mb-1">
+        Email Address
+      </label>
+      <input
+        #userEmail
+        class="form-control"
+        type="email"
+        id="email"
+        pattern=".+@globex\.com"
+        size="30"
+        required
+      >
+    </div>
+    <div class="card__pass mb-3">
+      <label for="password" class="mb-1">
+        Password
+      </label>
+      <input
+        #userPassword
+        class="form-control"
+        type="password"
+        id="password"
+        required
+      >
+    </div>
+    <div class="card__tools mb-3">
+      <div class="form-check">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="rememberCheck"
+
+        >
+        <label class="form-check-label" for="rememberCheck">
+          I agree with
+          <a href="#">terms & policies</a>
+        </label>
+      </div>
+    </div>
+    <button
+      class="card__register button mb-3"
+      (click)="authService.signUp(userEmail.value, userPassword.value)"
+    >
+      Register
+    </button>
+  </div>
+</div>

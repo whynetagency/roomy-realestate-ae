@@ -1,0 +1,121 @@
+<app-preloader *ngIf="isLoading"></app-preloader>
+<div class="card" *ngIf="!isReservation">
+  <h2 class="card__header mb-3">
+    Book this
+    <br>
+    apartment
+  </h2>
+  <div class="card__price mb-3">
+    <p>From AED{{price}}.00 per night</p>
+    <span>
+      + AED34.50 VAT & AED10.00 Tourism Fee
+      <br>
+      * Minimum {{minNights}} Nights Stay
+    </span>
+  </div>
+  <form [formGroup]="myForm" method="post" class="card__form">
+
+    <div class="dates-wrapper">
+      <div class="dates-action" (click)="dp.show()"></div>
+      <input class="form-control hidden mb-3"
+             #dp="bsDaterangepicker"
+             bsDaterangepicker
+             [placement]="isScreenLg ? 'left' : 'bottom'"
+             formControlName="dates"
+             [minDate]=minDate
+             [datesEnabled]="availableDates"
+             [bsConfig]="{
+               isAnimated: true,
+               containerClass: 'theme-orange',
+               rangeInputFormat : 'YYYY-MM-DD'
+              }"
+      >
+      <div class="form-control mb-3">
+        {{myForm.value?.dates[0] ? (myForm.value?.dates[0] | dateFormat) : 'Check-In' }}
+      </div>
+      <div class="form-control mb-3">
+        {{myForm.value?.dates[1] ? (myForm.value?.dates[1] | dateFormat) : 'Check-Out' }}
+      </div>
+    </div>
+
+    <select class="form-select input-lg mb-3" formControlName="guests" name="guests" id="guests">
+      <option *ngFor="let guest of maxGuests; let i = index"
+              [attr.value]="guest"
+              [attr.selected]="i == 0 ? true : null"
+      >
+        {{guest}} guest
+      </option>
+    </select>
+  </form>
+  <div *ngIf="subTotalPrice && !isCalculating" class="d-flex justify-content-between">
+    <div class="align-self-center"><b>{{totalNights}} nights</b></div>
+    <div  class="card__total">Total: <span>{{subTotalPrice}} AED</span></div>
+  </div>
+  <div *ngIf="isCalculating" class="loader"></div>
+  <button class="card__reserve button mt-3" (click)="onReserve()" [disabled]="!subTotalPrice">
+    Reserve
+  </button>
+</div>
+
+<div class="card" id="card-element" [ngStyle]="isReservation ? {visibility: 'visible', position: 'initial'} : {visibility: 'hidden', position: 'absolute'}">
+  <form [formGroup]="paymentForm" class="paymentcard" action="//httpbin.org/post" method="POST">
+    <input type="hidden" name="token" />
+    <div class="group">
+      <label>
+        <span>First name</span>
+        <input formControlName="userFirstName" id="card-name-element" type="text">
+      </label>
+      <label>
+        <span>Last name</span>
+        <input formControlName="userLastName" id="card-surmane-element" type="text">
+      </label>
+      <label>
+        <span>Email</span>
+        <input formControlName="email" id="card-email-element" type="email" placeholder="example@gmail.com">
+      </label>
+      <label>
+        <span>Phone</span>
+        <input formControlName="phone" id="card-phone-element" type="tel">
+      </label>
+      <label>
+        <span>Card number</span>
+        <div id="card-number-element" class="field"></div>
+      </label>
+      <label>
+        <span>Expiry date</span>
+        <div id="card-expiry-element" class="field"></div>
+      </label>
+      <label>
+        <span>CVC</span>
+        <div id="card-cvc-element" class="field"></div>
+      </label>
+    </div>
+    <div *ngIf="errorMessage" class="invalid">
+      {{errorMessage}}
+    </div>
+    <div class="invalid" *ngIf="paymentForm.controls['userFirstName'].invalid && paymentForm.controls['userFirstName'].touched">
+      Invalid first name
+    </div>
+    <div class="invalid" *ngIf="paymentForm.controls['userLastName'].invalid && paymentForm.controls['userLastName'].touched">
+      Invalid last name
+    </div>
+    <div class="invalid" *ngIf="paymentForm.controls['email'].invalid && paymentForm.controls['email'].touched">
+      Invalid email
+    </div>
+    <div class="invalid" *ngIf="paymentForm.controls['phone'].invalid && paymentForm.controls['phone'].touched">
+      Invalid phone
+    </div>
+    <button type="submit">Confirm</button>
+  </form>
+</div>
+
+<ng-template #successBanner>
+  <div class="green-decor">
+    <svg style="color: white" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path fill="white" d="M512 64a448 448 0 1 1 0 896 448 448 0 0 1 0-896zm-55.808 536.384-99.52-99.584a38.4 38.4 0 1 0-54.336 54.336l126.72 126.72a38.272 38.272 0 0 0 54.336 0l262.4-262.464a38.4 38.4 0 1 0-54.272-54.336L456.192 600.384z"></path></svg>
+  </div>
+  <div class="content">
+    <div>You successfully created Your booking</div>
+    <span>Your confirmation code : {{confirmationCode}}</span>
+  </div>
+</ng-template>
+

@@ -1,0 +1,334 @@
+@import "../../../assets/_variables";
+.home {
+  background: $main-background-color;
+  .hero {
+    position: relative;
+    //background: url("../../../assets/images/hero-slide.jpeg") no-repeat center;
+    background-size: cover;
+    height: 70vh;
+  }
+  .section {
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    position: relative
+  }
+  .searchbar {
+    height: 70vh;
+    position: relative;
+
+    .search {
+      margin-bottom: -45px;
+      position: absolute;
+      color: $form-text-color;
+      left: 50%;
+      bottom: 0;
+      transform: translate(-50%, 1%);
+      padding: 1rem;
+      border-radius: 50px;
+      background-color: $main-background-color;
+      z-index: 2;
+
+      .bar {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        align-items: center;
+        border: 1px solid $creamy;
+        padding: .5rem;
+        border-radius: 25px;
+        background-color: #fff;
+
+        .district {
+          font-size: 16px;
+          color: $form-text-color;
+          border: 0;
+          outline: 0;
+          width: 150px;
+
+          option {
+            background-color: #fff;
+          }
+        }
+
+        .datepicker {
+          display: flex;
+          position: relative;
+          &-action {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+          }
+          .field {
+            width: 200px;
+            white-space: nowrap;
+            text-align: center;
+            align-self: center;
+            cursor: pointer;
+          }
+          .hidden {
+            height: 0;
+            margin: 0;
+            padding: 0;
+            top: 225%;
+            left: 50%;
+            transform: translate(-50%, 0);
+          }
+        }
+
+        .guests {
+          display: flex;
+          gap: 10px;
+          span {
+            align-self: center;
+          }
+          input {
+            width: 30px;
+            text-align: center;
+          }
+          button {
+            background-color: #fff;
+            color: inherit;
+            font-size: 20px;
+          }
+        }
+        .btn {
+          border-radius: 20px;
+        }
+        .divider {
+          width: 1px;
+          height: 25px;
+          background-color: $input-border-color-main;
+        }
+
+        div {
+          .location-icon {
+            color: rgb(117, 117, 117);
+            width: 16px;
+            height: 16px
+          }
+        }
+      }
+
+      input, select:focus {
+        border-color: transparent;
+        outline: 0;
+        font-size: 14px;
+        box-shadow: 0 0 0px 1000px white inset;
+      }
+    }
+
+    .video-wrapper {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      video {
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+      }
+    }
+    &__text {
+      font-family: 'Permanent Marker', cursive;
+      color: $yellow;
+      font-size: 2rem;
+      z-index: 1;
+    }
+    &__form {
+      width: 70%;
+      height: 10%;
+      background: white;
+      z-index: 1;
+    }
+  }
+  .section {
+    &__header {
+      font-size: 1.8rem;
+      font-weight: 600;
+      padding-bottom: 20px;
+    }
+  }
+  .divider {
+    position: relative;
+    &__image {
+      width: 100%;
+    }
+    &__text {
+      position: absolute;
+      top: 20%;
+      left: 60%;
+      font-weight: 800;
+      font-size: 2rem;
+      width: 8rem;
+      span {
+        color: $yellow;
+      }
+    }
+  }
+}
+:host {
+  ::ng-deep {
+    .slick-list {
+      border-radius: 20px;
+      box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
+    }
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+svg {
+  margin-bottom: 5px;
+}
+
+.no-results{
+  text-align: center;
+  padding: 170px 100px 100px !important;
+  &__img{
+    width: 130px;
+    margin-bottom: 30px;
+  }
+  &__title{
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  &__text{
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding-bottom: 0;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .home {
+    .searchbar {
+      height: 50vh;
+      .search {
+        .bar {
+          .district {
+            margin-right: 5px;
+          }
+          .datepicker {
+            .field {
+              width: 100px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 800px) {
+  .home {
+    .searchbar {
+      height: 35vh;
+      .search {
+        transform: translate(-50%, 20%);
+        .bar {
+          .district {
+            width: 100px;
+          }
+        }
+      }
+    }
+  }
+  .apartments {
+    padding-top: 5rem !important;
+  }
+}
+
+@media screen and (max-width: 710px) {
+  .home {
+    .searchbar {
+      .search {
+        width: calc(100% - 40px) !important;
+
+        .bar {
+          border-radius: 33px;
+          padding: 15px;
+          gap: 7px;
+          flex-direction: column !important;
+          justify-content: center !important;
+
+          div {
+            .location-icon {
+              display: none;
+            }
+          }
+
+          .district-wrapper {
+            border: 1px solid $input-border-color-main;
+            border-radius: 25px;
+            padding: 5px 10px;
+          }
+
+          .district {
+            width: 100%;
+            margin: 0;
+          }
+
+          .divider {
+            display: none;
+          }
+
+          .datepicker {
+            width: 90%;
+            justify-content: space-between;
+            .divider {
+              display: initial;
+            }
+          }
+          .guests {
+            justify-content: space-between;
+            width: 90%;
+            margin-left: 10px;
+          }
+          button {
+            width: 80%;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 576px) {
+  .home {
+    .searchbar {
+      height: 25vh;
+      .search {
+        transform: translate(-50%, 40%);
+        .bar {
+          div {
+            &:nth-child(3) {
+              margin-left: 0;
+            }
+          }
+        }
+      }
+    }
+    .apartments {
+      padding-top: 7rem !important;
+    }
+  }
+}
+
+

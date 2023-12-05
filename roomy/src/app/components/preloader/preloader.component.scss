@@ -1,0 +1,25 @@
+.fp-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: 9999;
+  opacity: 1;
+  background-color: #f7f1e2;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  pointer-events: none;
+
+  .fp-loader__logo {
+    z-index: 10;
+    video {
+      width: 350px;
+      height: auto;
+    }
+  }
+}

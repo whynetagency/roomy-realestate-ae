@@ -1,0 +1,272 @@
+@import "src/assets/variables";
+
+.card {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  box-shadow: 0 6px 12px 0 rgb(0 0 0 / 4%), 0 1px 45px 0 rgb(0 0 0 / 8%);
+  padding: 24px;
+  margin-top: 2rem;
+  background: #fffbf2;
+  border-radius: 20px;
+  &__header {
+    font-size: 1.7rem;
+    font-weight: bold;
+  }
+  &__price {
+    span {
+      font-size: 10px;
+      opacity: .5;
+    }
+  }
+  &__form {
+    input, button,select:focus {
+      border-color: $input-border-color-main;
+      outline: 0;
+      box-shadow: 0 0 0px 1000px white inset;
+    }
+    .hidden {
+      visibility: hidden;
+      height: 0;
+      margin: 0;
+      padding: 0;
+      transform: translateX(-10%);
+    }
+    button {
+      background-color: #e9ecef;
+      box-shadow: none;
+    }
+  }
+  &__reserve {
+    background-color: $orange;
+    color: $main-text-color;
+    opacity: .8;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  &__total {
+    font-size: 18px;
+    padding: 15px 0;
+
+    span {
+      font-weight: bold;
+    }
+  }
+  .loader,
+  .loader:after {
+    border-radius: 50%;
+    width: 10em;
+    height: 10em;
+  }
+  .loader {
+    margin: 0 auto;
+    height: 48px;
+    font-size: 5px;
+    position: relative;
+    text-indent: -9999em;
+    border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+    border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+    border-left: 1.1em solid #eb906b;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation: load 1.1s infinite linear;
+    animation: load 1.1s infinite linear;
+  }
+  @-webkit-keyframes load {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes load {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+}
+.button {
+  padding: 10px 16px;
+  letter-spacing: .4px;
+  font-size: .9rem;
+  font-weight: 500;
+  line-height: 1.5;
+  border-radius: 3px;
+  text-transform: uppercase;
+  transition-duration: $hover-duration;
+}
+.dates{
+  &-wrapper{
+    position: relative;
+  }
+  &-action{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+//modal payment card
+form {
+  .group {
+    label {
+      position: relative;
+      color: $form-text-color;
+      font-weight: 300;
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+
+      & > span {
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+
+      .field {
+        background: transparent;
+        font-weight: 300;
+        border: 0;
+        color: #31325F;
+        outline: none;
+        flex: 1;
+        cursor: text;
+
+        &::-webkit-input-placeholder {
+          color: #CFD7E0;
+        }
+        &::-moz-placeholder {
+          color: #CFD7E0;
+        }
+      }
+      input {
+        line-height: 35px;
+        font-weight: 300;
+        font-family: inherit;
+        font-size: 16px;
+        height: 35px;
+        background: transparent;
+        border: 0;
+        color: #31325F;
+        outline: none;
+
+        &::-webkit-input-placeholder {
+          color: #CFD7E0;
+        }
+        &::-moz-placeholder {
+          color: #CFD7E0;
+        }
+      }
+    }
+  }
+  button {
+    float: left;
+    display: block;
+    background: $orange;
+    color: #383838;
+    box-shadow: 0 7px 14px 0 rgba(49, 49, 93, 0.10), 0 3px 6px 0 rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    border: 0;
+    font-size: 15px;
+    font-weight: 400;
+    width: 100%;
+    height: 40px;
+    line-height: 38px;
+    outline: none;
+    opacity: 0.8;
+    transition-duration: $hover-duration;
+    text-transform: uppercase;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.group label:not(:last-child) {
+  border-bottom: 1px solid #F0F5FA;
+}
+
+.outcome {
+  float: left;
+  width: 100%;
+  padding-top: 8px;
+  min-height: 24px;
+  text-align: center;
+
+  .success, .error {
+    display: none;
+    font-size: 13px;
+  }
+
+  .success.visible,
+  .error.visible {
+    display: inline;
+  }
+}
+
+::ng-deep .modal-content {
+  height: auto;
+  background-color: #fff8c3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-radius: 40px;
+  overflow: hidden;
+
+  .green-decor {
+    display: flex;
+    background-color: #97c880;
+    position: absolute;
+    left: -1px;
+    height: 100.5%;
+    border-radius: 40px;
+    top: -0.2px;
+  }
+
+  .content {
+    padding-left: 80px;
+    font-size: 18px;
+    font-weight: bold;
+
+    span {
+      color: $form-text-color;
+      padding-top: 20px;
+      font-size: 14px;
+      font-weight: normal;
+    }
+  }
+}
+.invalid {
+  font-size: 12px;
+  color: #ff5454;
+  padding-bottom: 10px;
+}
+@media screen and (max-width: 992px) {
+  .card {
+    margin: 2rem 0;
+  }
+}
+
+@keyframes rotation {
+  from {transform: rotate(0)}
+  to {transform: rotate(360deg)}
+}
+
+
+
